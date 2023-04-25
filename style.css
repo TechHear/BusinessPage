@@ -205,3 +205,11 @@ footer {
       /* border: 10px solid green; */
     }
   }
+
+  @media (max-width: 480px) {
+    .card-button {
+      font-size: 10px;
+      /* height: 50px; */
+      /* border: 10px solid green; */
+    }
+  }
