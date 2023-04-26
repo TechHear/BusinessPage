@@ -1,82 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<style>
-        *{
-            background-color: green;
-        }
-	.card {
-			border: 1px solid #ccc;
-			padding: 1rem;
-			max-width: 20rem;
-		}
-		.card-title {
-			font-size: 1.5rem;
-			font-weight: bold;
-			margin-bottom: 1rem;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
-		@media (max-width: 480px) {
-			.card-title {
-				font-size: 5.200rem;
-			}
-		}
-        .druck-mode {
-  /* Define your styles for "druck" mode here */
-  background-color: white;
-  color: black;
-  font-size: 14px;
-  /* etc. */
-}
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+      .counter {
+        font-size: 50px;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="counter">0</div>
 
-	</style>
-</head>
-<body>
-    <button id="druck-button">Druck</button>
+    <script>
+      const counter = document.querySelector(".counter");
+      const targetNumber = 1000;
 
-    <div class="card">
-		<h2 class="card-title" id="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	</div>
-	<script>
-		const MAX_WORDS = 3;
-		const titleElement = document.getElementById('title');
-		const words = titleElement.textContent.split(' ');
-		if (words.length > MAX_WORDS) {
-			const truncated = words.slice(0, MAX_WORDS).join(' ') + '...';
-			titleElement.textContent = truncated;
-		}
-		if (window.innerWidth < 480) {
-			titleElement.textContent = 'Lorem ipsum';
-		}
+      let currentNumber = 500;
+      let increment;
 
-        const druckButton = document.getElementById('druck-button');
-let isDruckMode = false;
-const bodyElement = document.querySelector('body');
+      function startCount() {
+        increment = setInterval(() => {
+          currentNumber += Math.floor(targetNumber / 1000);
+          if (currentNumber >= targetNumber) {
+            currentNumber = targetNumber;
+            clearInterval(increment);
+          }
+          counter.textContent = currentNumber.toLocaleString();
+        }, 10);
+      }
 
-druckButton.addEventListener('click', () => {
-  isDruckMode = !isDruckMode;
-  if (isDruckMode) {
-    // Apply "druck" mode styles to body
-    bodyElement.classList.add('druck-mode');
-    console.log('Druck mode activated');
-  } else {
-    // Remove "druck" mode styles from body
-    bodyElement.classList.remove('druck-mode');
-    console.log('Normal mode activated');
-  }
-});
-
-	</script>
-
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-</body>
+      startCount();
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
